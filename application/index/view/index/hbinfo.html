@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<title>红包信息</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+
+<link href="/hb/style0.css" rel="stylesheet"/>
+<style type="text/css">
+.lottery-detail-content .lottery-detail-north {
+    background-color: #E1544A;
+    border-radius: 4px 4px 50% 50% / 4px 4px 70% 70%;
+    height: 120px;
+}
+	.item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
+    padding-left: 72px;
+    min-height: 72px;
+}
+.item, .item h1, .item h2, .item h3, .item h4, .item h5, .item h6, .item p, .item-content, .item-content h1, .item-content h2, .item-content h3, .item-content h4, .item-content h5, .item-content h6, .item-content p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.item-divider {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    min-height: 0px;
+    background-color: #f5f5f5;
+    color: #222;
+    font-weight: 500;
+}
+.item {
+    border-color: #ddd;
+    background-color: #fff;
+    color: #444;
+    position: relative;
+    z-index: 2;
+    display: block;
+    margin: -1px;
+    padding: 16px;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 16px;
+}
+
+bar.bar-assertive {
+    border-color: #e42112;
+    background-color: #ef473a;
+    background-image: linear-gradient(0deg,#e42112,#e42112 50%,transparent 50%);
+    color: #fff;
+}
+.bar-header {
+    top: 0;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+}
+@media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx)
+.bar {
+    border: none;
+    background-image: linear-gradient(0deg,#ddd,#ddd 50%,transparent 50%);
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+}
+.bar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    position: absolute;
+    right: 0;
+    left: 0;
+    z-index: 9;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 100%;
+    height: 44px;
+    border-width: 0;
+    border-style: solid;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    background-size: 0;
+}
+.bar-assertive .button.button-clear {
+    border-color: transparent;
+    background: 0 0;
+    box-shadow: none;
+    color: #fff;
+    font-size: 17px;
+}
+.bar .button-bar>.button, .bar .buttons>.button {
+    min-height: 31px;
+    line-height: 32px;
+}
+.bar .button.button-clear, .bar button.button-clear {
+    padding-right: 2px;
+    padding-left: 2px;
+    font-weight: 300;
+    font-size: 17px;
+}
+.button-clear.button-clear {
+    border-color: transparent;
+    background: 0 0;
+    box-shadow: none;
+    color: #b2b2b2;
+}
+.bar-assertive .button {
+    border-color: transparent;
+    background-color: #ef473a;
+    color: #fff;
+}
+.bar .button, .bar button {
+    z-index: 1;
+    padding: 0 8px;
+    min-width: initial;
+    min-height: 31px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 32px;
+}
+.button-clear {
+    -webkit-transition: opacity .1s;
+    transition: opacity .1s;
+    padding: 0 6px;
+    max-height: 42px;
+    border-color: transparent;
+    background: 0 0;
+    box-shadow: none;
+}
+.button {
+    border-color: transparent;
+    background-color: #f8f8f8;
+    color: #444;
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0 12px;
+    min-width: 52px;
+    min-height: 47px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    vertical-align: top;
+    text-align: center;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    line-height: 42px;
+    cursor: pointer;
+}
+button, input, select, textarea {
+    font-family: "-apple-system","Helvetica Neue",Roboto,"Segoe UI",sans-serif;
+}
+button, input, label, select, textarea {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.42857;
+}
+button, html input[type=button], input[type=reset], input[type=submit] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+button, select {
+    text-transform: none;
+}
+button, input, select, textarea {
+    margin: 0;
+    outline-offset: 0;
+    outline-style: none;
+    outline-width: 0;
+    -webkit-font-smoothing: inherit;
+    background-image: none;
+}
+
+.item-avatar .item-content .item-image, .item-avatar .item-content>img:first-child, .item-avatar .item-image, .item-avatar-left .item-content .item-image, .item-avatar-left .item-content>img:first-child, .item-avatar-left .item-image, .item-avatar-left>img:first-child, .item-avatar>img:first-child {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+img {
+    -webkit-user-drag: none;
+}
+
+.bar.bar-assertive {
+    border-color: #e42112;
+    background-color: #ef473a;
+    background-image: linear-gradient(0deg,#e42112,#e42112 50%,transparent 50%);
+    color: #fff;
+}
+.modal-backdrop, .modal-backdrop-bg {
+    /*position: fixed;*/
+	    position: unset !important;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+.bar.bar-assertive .title {
+    color: #fff;
+}
+.bar .title {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    overflow: hidden;
+    margin: 0 10px;
+    min-width: 30px;
+    height: 43px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 44px;
+}
+.bar.bar-assertive {
+    border-color: #E1544A;
+    background-color: #E1544A;
+    background-image: linear-gradient(0deg,#E1544A,#E1544A 50%,transparent 50%);
+    color: #fff;
+}
+.bar-header {
+    top: 0;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+}
+@media not all, (-webkit-min-device-pixel-ratio: 1.5), not all, (min-resolution: 144dpi), (min-resolution: 1.5dppx)
+.bar {
+    border: none;
+    background-image: linear-gradient(0deg,#ddd,#ddd 50%,transparent 50%);
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+}
+.item-avatar, .item-avatar .item-content, .item-avatar-left, .item-avatar-left .item-content {
+    padding-left: 72px;
+    min-height: 45px;
+}
+body {
+    margin: 0;
+}
+
+img.lottery-detail-sender-head {
+    height: 50px;
+}
+</style>
+<body>
+
+
+
+
+
+
+
+
+
+	
+
+
+<div class="modal-backdrop active"><div class="modal-backdrop-bg"></div><div class="modal-wrapper" ng-transclude=""><ion-modal-view class="lottery-detail-view modal slide-in-up ng-enter active ng-enter-active">
+    <ion-header-bar class="bar-assertive lottery-detail-header bar bar-header" align-title="center">
+        <div class="buttons">
+            <button class="button button-clear" onclick="history.back(-1);">关闭</button>
+        </div>
+        <h1 class="title" style="left: 50px; right: 50px;">红包详情</h1>
+
+		
+    </ion-header-bar>
+    <ion-content class="lottery-detail-content scroll-content ionic-scroll  has-header"><div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+        <ion-list class="disable-user-behavior"><div class="list">
+            <ion-item class="lottery-detail-title item">
+                <div class="lottery-detail-north"></div>
+                <div class="lottery-detail-avatar">
+                    <img class="lottery-detail-sender-head" src="{$redhbinfo.userid|tx}">
+                </div>
+                <div class="lottery-detail-owner ng-binding">
+                     {$redhbinfo.userid|username}  
+                </div>
+				  
+				
+                <div ng-show="room.forbadeOpen==0" class="lottery-detail-description ng-binding">
+                 {$redhbinfo.content}
+                </div>
+				   
+				
+
+                <div class="lottery-detail-owner ng-hide" style="margin-top:15px;margin-bottom: 15px;" ng-show="detail.lottery.mine!=null">
+                    <span style="font-size:40px;" class="ng-binding">{$hbinfo.money}</span> {neq name="hbinfo.money" value="已抢完"}元{/neq}
+                </div>
+            </ion-item>
+			
+            <ion-item class="item-divider lottery-detail-list item ng-binding ng-hide" ng-show="room.type!='G011'">
+			{eq name="redhbinfo['num']" value="0"}
+				已抢完
+			{else /}
+				剩余红包{$redhbinfo.num}个
+			{/eq}
+            </ion-item>
+			
+            <!-- ngRepeat: d in detail.body -->
+
+
+			{volist name="redhblist" id="vo"}
+			<ion-item class="item-avatar item" ng-repeat="d in detail.body" >
+                <img ng-src="/img/users.png" src="{$vo.userid|tx}"> 
+                <div class="lottery-detail-nickName">
+                    <span class="ng-binding">{$vo.userid|username}</span><br>
+                    <span class="lottery-detail-time ng-binding">{$vo.time|date="H:i:s",###}</span>
+                </div>
+                <div class="lottery-detail-coin ng-binding" style="    line-height: inherit;    width: auto;">
+                    {$vo.money}
+					<div style="clear:both"> </div>
+					<!--
+					<span style="color:#FFD21C;font-size:12px;float:right;margin-left:4px" ng-show="room.unDeadHeadPic!=d.nickName&amp;&amp;maxMoneyIndex==$index&amp;&amp;aaaa" class="ng-hide"><span style="float:right">手气最佳</span><img style="    width: 16px;;float:right" src="/img/liang.png"></span>
+					-->
+                </div>
+            </ion-item>
+			{/volist}
+			
+                
+        </div></ion-list>
+    </div>
+	</ion-content>
+</ion-modal-view>
+</body>
+<!--网站WEB 小程序 android APP定制开发qq:839070295-->
+</html>

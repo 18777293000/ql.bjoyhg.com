@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<title>正在于{$privateinfo.name}会话</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<link rel="stylesheet" href="/static/css/reset.css" />
+	<link rel="stylesheet" href="/static/css/animate.css" />
+	<link rel="stylesheet" href="/static/css/swiper-3.4.1.min.css" />
+	<link rel="stylesheet" href="/static/css/layout.css" />
+	<link rel="stylesheet" href="/static/css/weui.css" />
+	
+	<script src="/static/js/jquery-1.9.1.min.js"></script>
+	<script src="/static/js/zepto.min.js"></script>
+	<script src="/static/js/fontSize.js"></script>
+	<script src="/static/js/swiper-3.4.1.min.js"></script>
+	<script src="/static/js/wcPop/wcPop.js"></script>
+	<script src="/static/js/weui.min.js"></script>
+	
+</head>
+<style type="text/css">
+		div#J__popupTmpl-Hongbao {
+	
+    background-color: #e35449;
+    padding: 0 .25rem;
+    line-height: .7rem;
+	height: 320px;
+	 top: 1.6rem;
+    /** position: fixed;
+    top: 1.6rem;
+	height: 370px;
+	/**width: 100%;**/
+	
+   
+}
+
+.wc__popupTmpl.tmpl-hongbao {
+    margin-top: 30px;
+}
+li.amountTotal {
+    color: #ffeac0 !important;
+}
+
+/**红包样式**/
+		.hongbaoljc {
+   background-color: #f99d3a;
+    padding: 0 .25rem;
+    line-height: .7rem;
+    height: 100px;
+    top: 1.6rem;
+    width: 250px;
+	sborder-radius: 5px;
+}
+em.usernum {
+    color: #fff;
+    font-size: 20px;
+    font-family: 微软雅黑;
+}
+.hbimg {
+    -o-transition: transform 0.4s;
+    transition: transform 0.4s;
+    -ms-transform: translateX(-10px);
+    -o-transform: translateX(-10px);
+    transform: translatey(10px);
+}
+
+/**抢到红包**/
+div#Hongbao4 {
+    background-color: #FFF;
+}
+
+.ng-binding {
+     text-align: -webkit-left; 
+    /**background-color: #FFFF;**/
+    width: 230px;
+}
+
+.hbimg {
+    margin-left: -50px;
+}
+img.lottery-img {
+    height: 40px;
+    position: absolute;
+    top: 10px;
+    left: 8px;
+}
+
+.lottery-up {
+ background-color: #f99d3a;
+    height: 68px;
+}
+
+.lottery-content {
+    color: #FFF;
+    position: absolute;
+    top: 10px;
+    left: 48px;
+    font-size: 13px;
+    width: 145px;
+    overflow: hidden;
+}
+</style>
+<body>
+	
+	<!-- <>微聊主容器 -->
+	<div class="wechat__panel clearfix">
+		<div class="wc__chat-wrapper flexbox flex__direction-column">
+			<!-- //顶部 -->
+			<div class="wc__headerBar fixed">
+				<div class="inner flexbox">
+					<a class="back" href="javascript:;" onclick="history.back(-1);"></a>
+					<h2 class="barTit flex1">{$privateinfo.name}</h2>
+					<a class="barIco u-one" href="/index/index/fdinfo.html?id={$privateinfo.id}"></a>
+				</div>
+			</div>
+			<!-- //微聊消息上墙面板 -->
+			<div class="wc__chatMsg-panel flex1">
+				<div class="chatMsg-cnt">
+					<ul class="clearfix" id="J__chatMsgList">
+						<li class="notice"><span>你已经添加了{$privateinfo.name}，现在可以开始聊天了。</span></li>
+						
+					</ul>
+				</div>
+			</div>
+	
+			<!-- //微聊底部功能面板 -->
+			<div class="wc__footTool-panel">
+				<!-- 输入框模块 -->
+				<div class="wc__editor-panel wc__borT flexbox">
+					<div class="wrap-editor flex1"><div class="editor J__wcEditor" contenteditable="true" style="-webkit-user-select:auto;"></div></div>
+					<i class="btn btn-emotion"></i>
+					<i class="btn btn-choose"></i>
+					<button class="btn-submit J__wchatSubmit">发送</button>
+				</div>
+
+				<!-- 表情、选择模块 -->
+				<div class="wc__choose-panel wc__borT" style="display: none;">
+					<!-- 表情区域 -->
+					<div class="wrap-emotion" style="display: none;">
+						<div class="emotion__cells flexbox flex__direction-column">
+							<div class="emotion__cells-swiper flex1" id="J__swiperEmotion">
+								<div class="swiper-container">
+									<div class="swiper-wrapper"></div>
+									<div class="pagination-emotion"></div>
+								</div>
+							</div>
+							<div class="emotion__cells-footer" id="J__emotionFootTab">
+								<ul class="clearfix">
+									<li class="swiperTmpl cur" tmpl="swiper__tmpl-emotion01"><img src="/static/img/emotion/face01/face-lbl.png" alt=""></li>
+									<li class="swiperTmpl" tmpl="swiper__tmpl-emotion02"><img src="/static/img/emotion/face02/face-lbl.gif" alt=""></li>
+									<li class="swiperTmpl" tmpl="swiper__tmpl-emotion03"><img src="/static/img/emotion/face03/face-lbl.gif" alt=""></li>
+									<li class="swiperTmpl" tmpl="swiper__tmpl-emotion04"><img src="/static/img/emotion/face04/face-lbl.gif" alt=""></li>
+									<li class="swiperTmpl" tmpl="swiper__tmpl-emotion05"><img src="/static/img/emotion/face05/face-lbl.gif" alt=""></li>
+									<li class="swiperTmpl" tmpl="swiper__tmpl-emotion06"><img src="/static/img/emotion/face06/face-lbl.gif" alt=""></li>
+									<li class="swiperTmplSet"><img src="/static/img/wchat/icon__emotion-set.png" alt=""></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- 选择区域 -->
+					<div class="wrap-choose" style="display: none;">
+						<div class="choose__cells">
+							<ul class="clearfix">
+								<li><a class="J__wchatZp" href="javascript:;"><span class="img"><img src="/static/img/wchat/icon__choose-zp.png" /><input type="file" id="idzfilezt" accept="image/*" /></span><em>照片</em></a></li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- …… 图片预览弹窗.Start -->
+	<div class="wc__popup-imgPreview" style="display: none;">
+		<div class="swiper-container J__swiperImgPreview">
+			<div class="swiper-wrapper"></div>
+			<!-- <div class="swiper-pagination pagination-imgPreview"></div> -->
+		</div>
+	</div>
+	<script type="text/javascript">
+		var curIndex = 0, imgPreviewSwiper;
+		$("#J__chatMsgList li").on("click", ".picture", function(){
+			var html = "",  _src = $(this).find("img").attr("src");
+
+			$("#J__chatMsgList li .picture").each(function(i, item){
+				html += '<div class="swiper-slide"><div class="swiper-zoom-container">'+ $(this).html() +'</div></div>';
+				if($(this).find("img").attr("src") == _src){
+					curIndex = i;
+				}
+			});
+			$(".J__swiperImgPreview .swiper-wrapper").html(html);
+			$(".wc__popup-imgPreview").show();
+
+			imgPreviewSwiper = new Swiper('.J__swiperImgPreview',{
+				pagination: false,
+				paginationClickable: true,
+				zoom: true,
+				observer: true,
+				observeParents: true,
+				initialSlide: curIndex
+			});
+		});
+		// 关闭预览
+		$(".wc__popup-imgPreview").on("click", function(e){
+			var that = $(this);
+			imgPreviewSwiper.destroy(true, true);
+			$(".J__swiperImgPreview .swiper-wrapper").html('');
+			that.hide();
+		});
+	</script>
+	<!-- …… 图片预览弹窗.End -->
+
+	<!-- …… 视频预览弹窗.Start -->
+	<div class="wc__popup-videoPreview" style="display: none;">
+		<i class="wc__videoClose"></i>
+		<video id="J__videoPreview" width="100%" height="100%" controls="controls" x5-video-player-type="h5" x5-video-player-fullscreen="true" webkit-playsinline preload="auto"></video>
+	</div>
+	<script type="text/javascript">
+		var video = document.getElementById("J__videoPreview");
+		$("#J__chatMsgList li").on("click", ".video", function(){
+			video.src = $(this).find("img").attr("videoUrl");
+			$(".wc__popup-videoPreview").show();
+			if(video.paused){
+				video.play();
+			}else{
+				video.pause();
+			}
+		});
+		video.addEventListener("ended", function(){
+			video.currentTime = 0;
+		}, false);
+		// 关闭预览
+		$(".wc__popup-videoPreview").on("click", ".wc__videoClose", function(){
+			$(".wc__popup-videoPreview").hide();
+			video.currentTime = 0;
+			video.pause();
+		});
+
+		// 进入全屏、退出全屏
+		video.addEventListener("x5videoenterfullscreen", function(){
+			console.log("进入全屏");
+		}, false);
+		video.addEventListener("x5videoexitfullscreen", function(){
+			$(".wc__popup-videoPreview .wc__videoClose").trigger("click");
+		}, false)
+	</script>
+	<!-- …… 视频预览弹窗.End -->
+
+	<!-- …… 表情模板.Start -->
+	<!-- //表情 -->
+	<div class="swiper__tmpl-emotion01" style="display: none;">
+		<div class="swiper-slide">
+			<div class="face-list face__sm-list">
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzpq8khj304g04gjrj.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzq4vucj304g04gwet.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzqj7vbj304g04g3yu.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzqz18mj304g04gweu.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzrk7nuj304g04gt92.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzrxz1mj304g04g3yx.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzseq95j304g04gmxk.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzsro5gj304g04gjrv.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzt65k4j304g04g74k.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lztjtatj304g04gmxg.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzukqqtj304g04gt92.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzv28i2j304g04g74l.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzvgwyaj304g04gdg4.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzvs4qij304g04gwep.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzwupmij304g04gjro.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzx6v9jj304g04gglx.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzxk5hjj304g04gt8z.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzxvgl8j304g04gaaa.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzy9hz0j304g04gwev.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzynb6ij304g04g3yr.jpg" /></span>
+				<span><img class="del" src="/static/img/wchat/icon__emotion-del.png" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__sm-list">
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzyy2r4j304g04g3yu.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzzcpjyj304g04g0t0.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lzzos96j304g04gjrm.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m003dd6j304g04g74l.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m00kzt7j304g04g74k.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m00xv2mj304g04gweu.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m01elpij304g04g0t3.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m01vfjmj304g04gwet.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m028y8jj304g04gt91.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m02qou0j304g04gmxk.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0350irj304g04g3yw.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m03hz6jj304g04gq3a.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m041lkjj304g04gwet.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m04db0yj304g04g74m.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m04scfnj304g04ggm1.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m057mojj304g04gglx.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m05olfqj304g04gjrm.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m067qsfj304g04ggm1.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m06k3iaj304g04gmxg.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m06xd0fj304g04gt92.jpg" /></span>
+				<span><img class="del" src="/static/img/wchat/icon__emotion-del.png" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__sm-list">
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m07cu2ij304g04gt91.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m07zuzyj304g04gmxi.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m08bm52j304g04gjrq.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m08pj3kj304g04g74l.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m092u81j304g04gwev.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m09eddjj304g04gwep.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m09sooxj304g04g0t0.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0a8uzsj304g04gmxj.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0am2s5j304g04g74s.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0azrhtj304g04gwev.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0bcszlj304g04gwev.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0brfhzj304g04gjro.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0c4e22j304g04gt93.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0civ50j304g04gglt.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0cuvv9j304g04g0t1.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0dcje7j304g04g74r.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0dqej2j304g04gwey.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0e48hcj304g04gjrt.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0f6kssj304g04gwey.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0fmmxoj304g04g3ys.jpg" /></span>
+				<span><img class="del" src="/static/img/wchat/icon__emotion-del.png" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__sm-list">
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0fysw0j304g04gmxk.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0gryijj304g04g0so.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0h68hfj304g04gmxn.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0hlkqij304g04gmxh.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0i11b9j304g04gdge.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0ir0n2j304g04gdg1.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0je3l1j304g04gglu.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0k0ya4j304g04gjrm.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0kp0fgj304g04gdg5.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0l6msgj304g04gmxh.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0lkzo5j304g04gq3g.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0m1sv0j304g04g0t5.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0mfzepj3074074js5.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0mtrhlj304g04gwer.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0n9y2aj304g04gmxf.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0nue2ij304g04gmxr.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0od20oj304g04gjrl.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0ou0oxj304g04g74n.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0pbixnj304g04gdfs.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0ptb85j304g04gwf2.jpg" /></span>
+				<span><img class="del" src="/static/img/wchat/icon__emotion-del.png" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__sm-list">
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0qbf0wj304g04g74m.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0qp9lwj304g04gjrr.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0r49a7j304g04gdg9.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0rgx9xj304g04g0t7.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0rt02aj304g04ggm1.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0s8c9lj304g04gwf2.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0su6eoj304g04gjrt.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0t9r48j304g04gq39.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0tmha0j304g04g74x.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0u1gn2j304g04g3yq.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0uia1bj304g04gjrt.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0uxextj304g04gwev.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0vc2qej304g04g0t8.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0vw5abj304g04gjs4.jpg" /></span>
+				
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0wgjsnj304g04g3yx.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0wurnsj304g04gdfy.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0x80mjj304g04gjrn.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0xozamj304g04gt9a.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0y3si8j304g04gwet.jpg" /></span>
+				<span><img class="face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57m0zioiyj304g04g3yq.jpg" /></span>
+				<span><img class="del" src="/static/img/wchat/icon__emotion-del.png" /></span>
+			</div>
+		</div>
+	</div>
+	<!-- //动图1 -->
+	<div class="swiper__tmpl-emotion02" style="display: none;">
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l8x0jmxg308c08c77j.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l8xix1yg308c08cwhe.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l8xz26tg308c08c40e.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l8ylsxbg308c08c3zk.gif" /></span>
+
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l8zikjzg308c08cwhi.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l900bdeg308c08cq49.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l90ikiig308c08cjtd.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l90yhglg308c08cjtc.gif" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l91igysg308c08cgnq.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l91znmmg308c08cgoj.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l92f91mg308c08cdh7.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l93sdvzg308c08cwhe.gif" /></span>
+				
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l94xssmg308c08cwhs.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l95cpqog308c08cadb.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l965ssxg308c08cgmd.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57l96sd0cg308c08cjth.gif" /></span>
+			</div>
+		</div>
+	</div>
+	<!-- //动图2 -->
+	<div class="swiper__tmpl-emotion03" style="display: none;">
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg49ndng306o06o754.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg4oysdg306o06o0uy.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg54lrng306o06otb6.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg5i3m1g306o06o40v.gif" /></span>
+
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg64z8wg306o06odi3.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg6nf5zg306o06omzi.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg72un2g306o06owgx.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg7mg63g306o06omzf.gif" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg80blog306o06ojs3.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg8few7g306o06odi9.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg8twqig306o06otay.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg98ycfg306o06owgr.gif" /></span>
+				
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lg9o5zog306o06owgo.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lgacsqqg306o06o40u.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lgav7x1g306o06ota4.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lgbclhwg306o06oaaa.gif" /></span>
+			</div>
+		</div>
+	</div>
+	<!-- //动图3-->
+	<div class="swiper__tmpl-emotion04" style="display: none;">
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llsxp2wg306o06omy6.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llteepog306o06ojt1.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llu3fo7g306o06odi0.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lluybn5g306o06oaa6.gif" /></span>
+
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llvt5dxg306o06o40x.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llw3w9gg306o06odg9.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llwqce9g306o06o402.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llx6cxlg306o06ojro.gif" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llxonqkg306o06oq5c.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lly2a6ng306o06o0u9.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llyurc8g306o06odhc.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llz78kng306o06owfc.gif" /></span>
+				
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57llzpqlwg306o06o0v5.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lm08k4ug306o06omzk.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lm0pe1bg306o06o0u5.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lm2db0yg306o06o76b.gif" /></span>
+			</div>
+		</div>
+	</div>
+	<!-- //动图4 -->
+	<div class="swiper__tmpl-emotion05" style="display: none;">
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lpzb2bzg306o06ojsx.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lpzubyeg306o06ot9r.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq0c4j8g306o06o408.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq0s9sgg306o06otc2.gif" /></span>
+
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq1ghymg306o06o759.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq1trezg306o06o40m.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq2659cg306o06odhh.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq2im1tg306o06oaca.gif" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq36y3og306o06on0y.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq3lok9g306o06odgy.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq46wprg306o06otb4.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq4pjvwg306o06oq5z.gif" /></span>
+				
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq52t3hg306o06otae.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq5hukng306o06odgq.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq5yqdpg306o06oaci.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lq6kykgg306o06oaay.gif" /></span>
+			</div>
+		</div>
+	</div>
+	<!-- //动图4 -->
+	<div class="swiper__tmpl-emotion06" style="display: none;">
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luoiplsg306o06o40c.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lup6v39g306o06ogls.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lupnx5ng306o06ojtt.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luq620wg306o06oq4k.gif" /></span>
+
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luqskoig306o06oabz.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lur9eqag306o06owgm.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lurng9zg306o06ojsn.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lut84c6g306o06odhh.gif" /></span>
+			</div>
+		</div>
+		<div class="swiper-slide">
+			<div class="face-list face__lg-list">
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lutpge2g306o06o0ul.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luu453vg306o06o405.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luulzhug306o06owgq.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luv3nrig306o06omzk.gif" /></span>
+				
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luvjsswg306o06ojsf.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luw1bkzg306o06ojti.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57luwetveg306o06o3zp.gif" /></span>
+				<span><img class="lg-face" src="//tva1.sinaimg.cn/mw1024/006ax0qjly1g57lux1siog306o06oq59.gif" /></span>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var emotionSwiper;
+		function setEmotionSwiper(tmpl){
+			var _tmpl = tmpl ? tmpl : $("#J__emotionFootTab ul li.cur").attr("tmpl");
+			$("#J__swiperEmotion .swiper-container").attr("id", _tmpl);
+			$("#J__swiperEmotion .swiper-wrapper").html($("." + _tmpl).html());
+
+			emotionSwiper = new Swiper('#' + _tmpl, {
+				pagination: '.pagination-emotion',
+				paginationClickable: true
+			});
+		}
+		// 点击切换表情
+		$("#J__emotionFootTab").on("click", "ul li.swiperTmpl", function(){
+			// 先销毁swiper
+			emotionSwiper && emotionSwiper.destroy(true, true);
+			var _tmpl = $(this).attr("tmpl");
+			$(this).addClass("cur").siblings().removeClass("cur");
+
+			setEmotionSwiper(_tmpl);
+		});
+	</script>
+	<!-- …… 表情模板.End -->
+
+
+
+<!--新红包模板-->
+<!-- //红包模板.begin -->
+		
+<!--结束模板-->
+	<!-- …… 红包弹窗模板.Start 
+	<div class="wc__choosePanel-tmpl">
+	   		<!-- //红包模板.begin 
+		<div id="J__popupTmpl-Hongbao" style="display:none;">
+			<div class="wc__popupTmpl tmpl-hongbao">
+				<i class="wc-xclose"></i>
+				<ul class="clearfix">
+					<li class="item flexbox">
+						<label class="txt">总金额</label><input class="ipt-txt flex1" type="tel" name="hbAmount" placeholder="0.00" /><em class="unit">元</em>
+					</li>
+					<li class="item flexbox">
+						<label class="txt">红包个数</label><input class="ipt-txt flex1" type="tel" name="hbNum" placeholder="填写个数" /><em class="unit">个</em>
+					</li>
+					<li class="tips">在线人数共<em class="memNum">186</em>人</li>
+					<li class="item item-area">
+						<textarea class="describe" name="content" placeholder="恭喜发财，大吉大利"></textarea>
+					</li>
+					<li class="amountTotal">￥<em class="num">0.00</em></li>
+				</ul>
+			</div>
+		</div>
+		<!-- //红包模板.end 
+	</div>-->
+	<script type="text/javascript">
+		/* ...红包事件.start */
+		$(".J__wchatHb").on("click", function(){
+			$("#Hongbao2").show();
+		$("#J__popupTmpl-Hongbao").show();
+		$(".wc__choose-panel").hide();
+		/**
+			var bpidx = wcPop({
+				skin: 'ios',
+				content: $("#J__popupTmpl-Hongbao").html(),
+				style: 'background-color: #f3f3f3; max-width: 320px; width: 90%;',
+				shadeClose: false,
+
+				btns: [
+					{
+						text: '塞钱进红包',
+						style: 'background:#00c1de;color:#fff;font-size:16px;',
+						onTap() {
+							alert("塞钱成功！");
+							wcPop.close(bpidx);
+						}
+					}
+				]
+			});
+			**/
+		});
+		/* ...红包事件.end */
+
+		// ...关闭
+		$("body").on("click", ".wc__popupTmpl .wc-xclose", function(){
+			wcPop.close();
+		});
+	</script>
+	<!-- …… 红包弹窗模板.End -->
+
+	
+	<script type="text/javascript">
+	var ljc_name="{$name}";
+var ljc_tx="{$userinfo.id|tx}";
+var ljc_id="{$userinfo.id}";
+var ljc_fid="{$privateinfo.id}";
+		/** __公共函数 */
+		$(function(){
+			// 禁止长按弹出系统菜单
+			$(".wechat__panel").on("contextmenu", function(e){
+				e.preventDefault();
+			});
+		});
+		
+		/** __自定函数 */
+		$(function(){
+			// ...滚动聊天区底部
+			function wchat_ToBottom(){
+				$(".wc__chatMsg-panel").animate({scrollTop: $("#J__chatMsgList").height()}, 0);
+			}
+
+			// ...点击聊天面板区域
+			$(document).on("click", ".wc__chatMsg-panel", function(e){
+				var _tapMenu = $(".wc__chatTapMenu");
+				if(_tapMenu.length && e.target != _tapMenu && !$.contains(_tapMenu[0], e.target)){
+					// 关闭长按菜单
+					_tapMenu.hide();
+					$(".wc__chatMsg-panel").find("li .msg").removeClass("taped");
+				}
+				$(".wc__choose-panel").hide();
+			});
+
+			// ...表情、选择区切换
+			$(".wc__editor-panel").on("click", ".btn", function(){
+				var that = $(this);
+				$(".wc__choose-panel").show();
+
+				if (that.hasClass("btn-emotion")) {
+					$(".wc__choose-panel .wrap-emotion").show();
+					$(".wc__choose-panel .wrap-choose").hide();
+					// 初始化swiper表情
+					!emotionSwiper && $("#J__emotionFootTab ul li.cur").trigger("click");
+				} else if (that.hasClass("btn-choose")) {
+					$(".wc__choose-panel .wrap-emotion").hide();
+					$(".wc__choose-panel .wrap-choose").show();
+				}
+				wchat_ToBottom();
+			});
+
+			// ...处理编辑器信息
+			var $editor = $(".J__wcEditor"), _editor = $editor[0];
+			function surrounds(){
+				setTimeout(function () { //chrome
+					var sel = window.getSelection();
+					var anchorNode = sel.anchorNode;
+					if (!anchorNode) return;
+					if (sel.anchorNode === _editor ||
+						(sel.anchorNode.nodeType === 3 && sel.anchorNode.parentNode === _editor)) {
+						
+						var range = sel.getRangeAt(0);
+						var p = document.createElement("p");
+						range.surroundContents(p);
+						range.selectNodeContents(p);
+						range.insertNode(document.createElement("br")); //chrome
+						sel.collapse(p, 0);
+						
+						(function clearBr() {
+							var elems = [].slice.call(_editor.children);
+							for (var i = 0, len = elems.length; i < len; i++) {
+								var el = elems[i];
+								if (el.tagName.toLowerCase() == "br") {
+									_editor.removeChild(el);
+								}
+							}
+							elems.length = 0;
+						})();
+					}
+				}, 10);
+			}
+			// 格式化编辑器包含标签
+			_editor.addEventListener("click", function () {
+				$(".wc__choose-panel").hide();
+			}, true);
+			_editor.addEventListener("focus", function(){
+				surrounds();
+			}, true);
+			_editor.addEventListener("input", function(){
+				surrounds();
+			}, false);
+			// 点击表情
+			$("#J__swiperEmotion").on("click", ".face-list span img", function(){
+				var that = $(this), range;
+
+				if(that.hasClass("face")){ //小表情
+					var img = that[0].cloneNode(true);
+					_editor.focus();
+					_editor.blur(); //输入表情时禁止输入法
+
+					setTimeout(function(){
+						if(document.selection && document.selection.createRange){
+							document.selection.createRange().pasteHTML(img);
+						}else if(window.getSelection && window.getSelection().getRangeAt){
+							range = window.getSelection().getRangeAt(0);
+							range.insertNode(img);
+							range.collapse(false);
+
+							var sel = window.getSelection();
+							sel.removeAllRanges();
+							sel.addRange(range);
+						}
+					}, 10);
+				}else if(that.hasClass("del")){ //删除
+					_editor.focus();
+					_editor.blur(); //输入表情时禁止输入法
+
+					setTimeout(function(){
+						range = window.getSelection().getRangeAt(0);
+						range.collapse(false);
+
+						var sel = window.getSelection();
+						sel.removeAllRanges();
+						sel.addRange(range);
+						document.execCommand("delete");
+					}, 10);
+				} else if(that.hasClass("lg-face")){ //大表情
+					var _img = that.parent().html();
+					$.post("/message/index/chat", { id: ljc_id, content: _img,fid:ljc_fid },
+				function(data){
+					//消息回调
+					 //alert("Data Loaded: " + data);
+					});
+					var _tpl = [
+						'<li class="me">\
+							<div class="content">\
+								<p class="author">'+ ljc_name +'</p>\
+								<div class="msg lgface">'+ _img + '</div>\
+							</div>\
+							<a class="avatar" href="/index/index/fdinfo.html"><img src="'+ ljc_tx +'" /></a>\
+						</li>'
+					].join("");
+					$chatMsgList.append(_tpl);
+
+					wchat_ToBottom();
+				}
+			});
+			// 发送信息
+			var $chatMsgList = $("#J__chatMsgList");
+			function isEmpty(){
+				var html = $editor.html();
+				html = html.replace(/<br[\s\/]{0,2}>/ig, "\r\n");
+				html = html.replace(/<[^img].*?>/ig, "");
+				html = html.replace(/&nbsp;/ig, "");
+				return html.replace(/\r\n|\n|\r/, "").replace(/(?:^[ \t\n\r]+)|(?:[ \t\n\r]+$)/g, "") == "";
+			}
+			$(".J__wchatSubmit").on("click", function(){
+				// 判断内容是否为空
+				if(isEmpty()) return;
+
+				var html = $editor.html();
+				var reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;
+				html = html.replace(reg, "<a href='$1$2'>$1$2</a>");
+
+				$.post("/message/index/chat", { id: ljc_id, content: html,fid:ljc_fid },
+				function(data){
+					//消息回调
+					 //alert("Data Loaded: " + data);
+					});
+				var msgTpl = [
+					'<li class="me">\
+						<div class="content">\
+							<p class="author">'+ ljc_name +'</p>\
+							<div class="msg">'+ html +'</div>\
+						</div>\
+						<a class="avatar" href="/index/index/fdinfo"><img src="'+ ljc_tx +'" /></a>\
+					</li>'
+				].join("");
+				$chatMsgList.append(msgTpl);
+
+				// 清空聊天框并获取焦点（处理输入法和表情 - 聚焦）
+				if(!$(".wc__choose-panel").is(":hidden")){
+					$editor.html("");
+				}else{
+					$editor.html("").focus().trigger("click");
+				}
+				wchat_ToBottom();
+			});
+
+			// ...长按弹出菜单
+			$("#J__chatMsgList").on("longTap", "li .msg", function(e){
+				var that = $(this), menuTpl, menuNode = $("<div class='wc__chatTapMenu animated anim-fadeIn'></div>");
+				that.addClass("taped");
+				that.parents("li").siblings().find(".msg").removeClass("taped");
+				var isRevoke = that.parents("li").hasClass("me");
+				var _revoke = isRevoke ? "<a href='#'><i class='ico i4'></i>撤回</a>" : "";
+				
+				if(that.hasClass("picture")){
+					console.log("图片长按");
+					menuTpl = "<div class='menu menu-picture'><a href='#'><i class='ico i1'></i>复制</a><a href='#'><i class='ico i2'></i>收藏</a><a href='#'><i class='ico i3'></i>另存为</a>"+ _revoke +"<a href='#'><i class='ico i5'></i>删除</a></div>";
+				}else if(that.hasClass("video")){
+					console.log("视频长按");
+					menuTpl = "<div class='menu menu-video'><a href='#'><i class='ico i3'></i>另存为</a>" + _revoke +"<a href='#'><i class='ico i5'></i>删除</a></div>";
+				}else{
+					console.log("文字长按");
+					menuTpl = "<div class='menu menu-text'><a href='#'><i class='ico i1'></i>复制</a><a href='#'><i class='ico i2'></i>收藏</a>" + _revoke +"<a href='#'><i class='ico i5'></i>删除</a></div>";
+				}
+
+				if(!$(".wc__chatTapMenu").length){
+					$(".wc__chatMsg-panel").append(menuNode.html(menuTpl));
+					autoPos();
+				}else{
+					$(".wc__chatTapMenu").hide().html(menuTpl).fadeIn(250);
+					autoPos();
+				}
+
+				function autoPos(){
+					console.log(that.position().top)
+					var _other = that.parents("li").hasClass("others");
+					$(".wc__chatTapMenu").css({
+						position: "absolute",
+						left: that.position().left + parseInt(that.css("marginLeft")) + (_other ? 0 : that.outerWidth() - $(".wc__chatTapMenu").outerWidth()),
+						top: that.position().top - $(".wc__chatTapMenu").outerHeight() - 8
+					});
+				}
+			});
+			// ...销毁长按弹窗
+			$(".wc__chatMsg-panel").on("scroll", function(){
+				$(".wc__chatTapMenu").hide();
+				$(this).find("li .msg").removeClass("taped");
+			});
+		});
+	</script>
+	<script type="text/javascript">
+	<!--
+			//头像上传
+		function uploadPictx(formData) {
+            var oReq = new XMLHttpRequest();
+            oReq.open("POST", "/message/index/chatpic?id={$userinfo.id}&fid={$privateinfo.id}&zt=0", true);
+            oReq.onload = function (oEvent) {
+                if (oReq.status == 200) {
+					//msgWrapper.innerHTML += oReq.response;
+					//$('#msgWrapper').scrollTop( $('#msgWrapper')[0].scrollHeight );//滚动条至底部
+					html=oReq.response;
+					$('#shopimgdata').html(html);
+
+					// $('#uptpzt').html(html);
+
+                } else {
+					//msgWrapper.innerHTML += '';
+					//document.getElementById("msgWrapper").innerHTML=oReq.status;
+
+                }
+            };
+
+            oReq.send(formData);
+        }
+
+
+//用户头像上传
+	$("#idzfilezt").change(function(){
+	//console.log('头像主图');
+    lrz(this.files[0],{width:800})
+    .then(function (rst) {
+        // 处理成功会执行
+		//$('#shopimgdata').html('<img src="/Public/images/dd.gif">');
+		//Toast('图片已经提交请耐心等待',5500)
+		Tmsg('上传成功',2);
+        var img = new Image();
+        img.src = rst.base64;
+        var type;
+        type = 'idzfile2';
+		//console.log(img.src);
+		uploadPictx(img.src);
+       // up_ajax(rst.base64,type);
+
+    });
+});
+
+	$("#photoFile").change(function(){
+	//console.log('主图');
+    lrz(this.files[0],{width:800})
+    .then(function (rst) {
+        // 处理成功会执行
+		Toast('图片已经提交请耐心等待',5500)
+        var img = new Image();
+        img.src = rst.base64;
+        var type;
+        type = 'idzfile2';
+		//console.log(img.src);
+		uploadPic(img.src);
+       // up_ajax(rst.base64,type);
+
+    });
+});
+refresh_fuc();
+//群消息
+ function refresh_fuc(){  
+	 //return;
+	 $.post("/index.php/message/index/chatmessage",
+    {
+      fid:ljc_fid,//群组ID
+	  userid:ljc_id,//用户ID
+      zt:"0"//状态
+    },
+    function(data,status){
+		// data=eval(data);
+		// console.log(data);
+		if((data[0])==1){
+		//playVid2()
+		}
+		initTable(data);
+		//$('#msgWrapper').scrollTop( $('#msgWrapper')[0].scrollHeight );//滚动条至底部
+    });
+ }
+
+ setInterval(refresh_fuc, 5000); //刷新频率   
+
+//处理json
+ function initTable (data) {
+		data=eval(data);
+		 //console.log(data[0]);
+        var html = '';
+        for (var j in data) {
+            var obj = data[j];
+			console.log(obj.type);
+			if(obj.userid==ljc_id){
+				if(obj.type=="1") {
+					var type="picture";
+					}else{
+						var type="";
+					}
+				html +='<li class="me">\
+				<div class="content">\
+								<p class="author">' + obj.name + '</p>\
+								<div class="msg ' + type + '" id="picbig">\
+									' + obj.content + '\
+								</div>\
+							</div>\
+							<a class="avatar" href="/index/index/fdinfo.html?id=' + obj.userid + '"><img src="' + obj.tx + '" /></a>\
+						</li>';
+			}else{
+				
+				if(obj.type=="1") {
+					var type="picture";
+				}else{
+						var type="";
+					}
+				
+				html +='<li class="others">\
+							<a class="avatar" href="/index/index/fdinfo.html?id=' + obj.userid + '"><img src="' + obj.tx + '" /></a>\
+							<div class="content">\
+								<p class="author">' + obj.name + '</p>\
+								<div class="msg ' + type + '" id="picbig">\
+									' + obj.content + '\
+								</div>\
+							</div>\
+						</li>';
+			}
+        }
+		//console.log(html);
+        $('#J__chatMsgList').html(html);
+		//滚动到底部
+		//$(".wc__chatMsg-panel").animate({scrollTop: $("#J__chatMsgList").height()}, 0);
+
+    }
+
+function Tmsg(msg,time){
+	 wcPop({
+      anim: 'fadeIn',
+      content: msg,
+      shade: true,
+      shadeClose: false,
+      time: time
+    });
+
+		
+}
+	//-->
+	</script>
+
+ <script type="text/javascript">
+	<!--
+		document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+      //keyCode==13 shiftKey==1 37方向箭头
+             if(e && e.keyCode==13){ // enter 键
+				var editor = $(".J__wcEditor").html();
+				console.log(editor.length);
+				if(editor.length == 11) return;
+//|&
+				var html = editor;
+				console.log(html);
+				var reg =/(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|\&|-|\;|\:)+)/g;
+				//var reg = /(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|-)+)/g;
+				html = html.replace(reg, "<a href='$1$2'>$1$2</a>");
+				console.log(html);
+				//记录消息
+				$.post("/message/index/chat", { id: ljc_id, content: html,fid:ljc_fid },
+				function(data){
+					//消息回调
+					/*
+					if(data=="s1"){
+						Tmsg('聊天室当前禁言不能发言',3);
+						return false;
+					}else if(data=="s2"){
+						Tmsg('您已经被踢出此聊天室',3);
+						window.location.href = '/';
+						return false;
+					}*/
+					});
+				var msgTpl = [
+					'<li class="me">\
+						<div class="content">\
+							<p class="author">'+ ljc_name +'</p>\
+							<div class="msg">'+ html +'</div>\
+						</div>\
+						<a class="avatar" href="/index/index/fdinfo"><img src="'+ ljc_tx +'" /></a>\
+					</li>'
+				].join("");
+				$("#J__chatMsgList").append(msgTpl);
+				//$(".editor").html("").focus().trigger("click");
+				// 清空聊天框并获取焦点（处理输入法和表情 - 聚焦）
+			
+				if(!$(".wc__choose-panel").is(":hidden")){
+					$(".J__wcEditor").html("<p><br></p>");
+				}else{
+					//$(".J__wcEditor").html("<p</p>");
+					$(".J__wcEditor").html("<p><br></p>").focus().trigger("click");
+				}
+				
+				$(".wc__chatMsg-panel").animate({scrollTop: $("#J__chatMsgList").height()}, 0);
+				//End
+			 }
+};
+	//-->
+	</script>
+<!--网站WEB 小程序 android APP定制开发qq:839070295-->
+		<script src="/static/js/lrz/lrz.all.bundle.js" type="text/javascript"></script>
+
+</body>
+</html>

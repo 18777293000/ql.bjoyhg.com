@@ -1,0 +1,244 @@
+<!--网站WEB 小程序 android APP定制开发qq:839070295-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>聊天室后台系统</title>
+    <meta charset="utf-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <meta content="template language" name="keywords">
+    <meta content="Tamerlan Soziev" name="author">
+    <meta content="Admin dashboard html template" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link href="favicon.png" rel="shortcut icon">
+    <link href="apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet" type="text/css">
+    <link href="/static/admin/bower_components/select2/dist/css/select2.min.css" rel="stylesheet">
+    <link href="/static/admin/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="/static/admin/bower_components/dropzone/dist/dropzone.css" rel="stylesheet">
+    <link href="/static/admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="/static/admin/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+    <link href="/static/admin/bower_components/perfect-scrollbar/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <link href="/static/admin/bower_components/slick-carousel/slick/slick.css" rel="stylesheet">
+    <link href="/static/admin/css/main.css?version=4.4.0" rel="stylesheet">
+  </head>
+  <!--menu-position-side menu-side-left full-screen with-content-panel-->
+  <body class="menu-position-side menu-side-left full-screen with-content-panel">
+    <div class="all-wrapper with-side-panel solid-bg-all">
+    
+	  {include file="leftlist" /} 
+     
+        <!--------------------
+        END - Main Menu
+        -------------------->
+        <div class="content-w">
+         
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/admin">首页</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="/admin/index/settings">用户信息修改</a>
+            </li>
+        
+          </ul>
+          
+  <div class="col-sm-7">
+    <div class="element-wrapper">
+      <div class="element-box">
+       
+          <div class="element-info">
+            <div class="element-info-with-icon">
+              <div class="element-info-icon">
+                <div class="os-icon os-icon-wallet-loaded"></div>
+              </div>
+              <div class="element-info-text">
+                <h5 class="element-inner-header">
+                  用户信息修改
+                </h5>
+                <div class="element-inner-desc">
+                 用户信息修改
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for=""> 用户信息修改</label>
+			<input class="form-control" data-error="Your email address is invalid" value="{$userinfo.name}" name="user" required="required" vatype="text">
+            <div class="help-block form-text with-errors form-control-feedback"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for=""> 密码</label><input class="form-control" data-minlength="6" placeholder="密码" name="pw" id="pw" value="{$userinfo.pw}" type="text">
+                <div class="help-block form-text text-muted form-control-feedback">
+                 必须大于六位
+                </div>
+              </div>
+            </div>
+			
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="">余额</label><input class="form-control" data-match-error="Passwords don&#39;t match" name="money" id="money" placeholder="再次输入密码" value="{$userinfo.money}" type="text">
+                <div class="help-block form-text with-errors form-control-feedback"></div>
+              </div>
+            </div>
+			
+          </div>
+		 
+		  <!--
+          <div class="form-group">
+            <label for=""> Multiselect</label><select class="form-control select2" multiple="true">
+              <option selected="true">
+                New York
+              </option>
+              <option selected="true">
+                California
+              </option>
+              <option>
+                Boston
+              </option>
+              <option>
+                Texas
+              </option>
+              <option>
+                Colorado
+              </option>
+            </select>
+          </div>
+		  <!--
+          <fieldset class="form-group">
+            <legend><span>Section Example</span></legend>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for=""> First Name</label><input class="form-control" data-error="Please input your First Name" placeholder="First Name" required="required" type="text">
+                  <div class="help-block form-text with-errors form-control-feedback"></div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">Last Name</label><input class="form-control" data-error="Please input your Last Name" placeholder="Last Name" required="required" type="text">
+                  <div class="help-block form-text with-errors form-control-feedback"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for=""> Date of Birth</label><input class="single-daterange form-control" placeholder="Date of birth" type="text" value="04/12/1978">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="form-group">
+                  <label for="">Twitter Username</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">
+                        @
+                      </div>
+                    </div>
+                    <input class="form-control" placeholder="Twitter Username" type="text">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Date Range Picker</label><input class="multi-daterange form-control" type="text" value="03/31/2017 - 04/06/2017">
+            </div>
+            <div class="form-group">
+              <label> Example textarea</label><textarea class="form-control" rows="3"></textarea>
+            </div>
+          </fieldset>
+          <div class="form-check">
+            <label class="form-check-label"><input class="form-check-input" type="checkbox">I agree to terms and conditions</label>
+          </div>-->
+          <div class="form-buttons-w">
+            <button class="btn btn-primary" type="submit" id="post">保存设置</button>
+          </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="display-type"></div>
+    </div>
+    <script src="/static/admin/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/static/admin/bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/static/admin/bower_components/moment/moment.js"></script>
+    <script src="/static/admin/bower_components/chart.js/dist/Chart.min.js"></script>
+    <script src="/static/admin/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="/static/admin/bower_components/jquery-bar-rating/dist/jquery.barrating.min.js"></script>
+    <script src="/static/admin/bower_components/ckeditor/ckeditor.js"></script>
+    <script src="/static/admin/bower_components/bootstrap-validator/dist/validator.min.js"></script>
+    <script src="/static/admin/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="/static/admin/bower_components/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+    <script src="/static/admin/bower_components/dropzone/dist/dropzone.js"></script>
+    <script src="/static/admin/bower_components/editable-table/mindmup-editabletable.js"></script>
+    <script src="/static/admin/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/static/admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/static/admin/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="/static/admin/bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/static/admin/bower_components/tether/dist/js/tether.min.js"></script>
+    <script src="/static/admin/bower_components/slick-carousel/slick/slick.min.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/util.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/alert.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/button.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/carousel.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/collapse.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/dropdown.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/modal.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/tab.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/tooltip.js"></script>
+    <script src="/static/admin/bower_components/bootstrap/js/dist/popover.js"></script>
+    <script src="/static/admin/js/demo_customizer.js?version=4.4.0"></script>
+    <script src="/static/admin/js/main.js?version=4.4.0"></script>
+    <script>
+      
+      $(function(){
+	$("#post").on("click", function(){
+		
+		
+
+
+	 $.post("/operate/index/userinfo",
+    {
+      pw:$("#pw").val(),
+	  id:<?=input('get.id')?>,
+	  money:$("#money").val(),
+	  //content:$("#content").val(),
+    },
+    function(data,status){
+		if(data==1){
+			Toast('修改成功',3000);
+			 window.location.reload();
+		}
+		//document.getElementById("user").innerHTML=data;
+		
+    });
+	
+	});
+      
+	  	});
+		
+      
+      function Toast(msg,duration){  
+    duration=isNaN(duration)?3000:duration;  
+    var m = document.createElement('div');  
+    m.innerHTML = msg;  
+    m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 40%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";  
+    document.body.appendChild(m);  
+    setTimeout(function() {  
+        var d = 0.5;  
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';  
+        m.style.opacity = '0';  
+        setTimeout(function() { document.body.removeChild(m) }, d * 1000);  
+    }, duration);  
+}  
+      
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,295 @@
+<!--网站WEB 小程序 android APP定制开发qq:839070295-->
+ 
+ <div class="layout-w">
+	 
+        <!--------------------
+        START - Mobile Menu
+        -------------------->
+        <div class="menu-mobile menu-activated-on-click color-scheme-dark">
+          <div class="mm-logo-buttons-w">
+            <a class="mm-logo" href="index.html"><img src="/static/admin/img/logo.png"><span>管理员</span></a>
+            <div class="mm-buttons">
+              <div class="content-panel-open">
+                <div class="os-icon os-icon-grid-circles"></div>
+              </div>
+              <div class="mobile-menu-trigger">
+                <div class="os-icon os-icon-hamburger-menu-1"></div>
+              </div>
+            </div>
+          </div>
+          <div class="menu-and-user">
+            <div class="logged-user-w">
+              <div class="avatar-w">
+                <img alt="" src="/static/admin/img/avatar1.jpg">
+              </div>
+              <div class="logged-user-info-w">
+                <div class="logged-user-name">
+                 <?=cookie("admin")?>
+                </div>
+                <div class="logged-user-role">
+                  超级管理员
+                </div>
+              </div>
+            </div>
+            <!--------------------
+            START - Mobile Menu List
+            -------------------->
+            <ul class="main-menu">
+              <!--
+              <li class="has-sub-menu">
+                <a href="layouts_menu_top_image.html">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-layers"></div>
+                  </div>
+                  <span>聊天室操作</span></a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="layouts_menu_side_full.html">聊天室列表</a>
+                  </li>
+                </ul>
+              </li>
+			  <li class="has-sub-menu">
+                <a href="layouts_menu_top_image.html">
+                  <div class="icon-w">
+                    <div class="os-icon os-icon-layers"></div>
+                  </div>
+                  <span>用户管理</span></a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="layouts_menu_side_full.html">用户列表</a>
+                  </li>
+                </ul>
+              </li>
+              -->
+            	<li class="selected">
+              <a href="/">
+                <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+              <span></span>首页</a>
+            </li>
+            <li class="selected">
+              <a href="/admin">
+                <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>聊天室管理</span></a>
+             <!-- <div class="sub-menu-w">
+                <div class="sub-menu-header">
+                  聊天室操作
+                </div>
+                <div class="sub-menu-icon">
+                  <i class="os-icon os-icon-layout"></i>
+                </div>
+                <div class="sub-menu-i">
+                  <ul class="sub-menu">
+                    <li>
+                      <a href="index.html">聊天室列表</a>
+                    </li>
+					
+                  </ul>
+                </div>
+              </div>-->
+            </li>
+			 <li class="selected">
+              <a href="/admin/index/usercenter">
+                <div class="icon-w">
+                 <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>用户管理</span></a>
+            </li>
+			
+           <!--  <li class="selected">
+              <a href="/admin/index/compactcard">
+                <div class="icon-w">
+                 <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>生成群卡</span></a>
+            </li>-->
+			<li class="selected ">
+              <a href="/admin/index/groupchat">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>聊天记录</span></a>
+            </li>
+
+			<!--<li class="selected ">
+              <a href="/admin/index/chatold">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>管理私聊记录</span></a>
+            </li>-->
+
+			
+			<li class="selected ">
+              <a href="/admin/index/fdchat">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>好友聊天记录</span></a>
+            </li>
+
+			<li class="selected ">
+              <a href="/admin/index/settings">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>系统设置</span></a>
+            </li>
+
+			<li class="selected ">
+              <a href="/admin/index/logout">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>退出登陆</span></a>
+            </li>
+            </ul>
+            <!--------------------
+            END - Mobile Menu List
+            -------------------->
+            <div class="mobile-menu-magic">
+			 <h4>
+              聊天系统
+            </h4>
+            <p>
+              qq:839070295
+            </p>
+            <div class="btn-w">
+              <a class="btn btn-white btn-rounded" href="##" target="_blank">购买程序</a>
+            </div>
+           
+            </div>
+          </div>
+        </div>
+        <!--------------------
+        END - Mobile Menu
+        -------------------->
+		
+		<!--------------------
+       PC左侧列表
+        -------------------->
+        <div class="menu-w color-scheme-light color-style-transparent menu-position-side menu-side-left menu-layout-compact sub-menu-style-over sub-menu-color-bright selected-menu-color-light menu-activated-on-hover menu-has-selected-link">
+          <div class="logo-w">
+            <a class="logo" href="index.html">
+              <div class="logo-element"></div>
+              <div class="logo-label">
+               超级管理员
+              </div>
+            </a>
+          </div>
+          <div class="logged-user-w avatar-inline">
+            <div class="logged-user-i">
+              <div class="avatar-w">
+                <img alt="" src="/static/admin/img/avatar1.jpg">
+              </div>
+              <div class="logged-user-info-w">
+                <div class="logged-user-name">
+                  <?=cookie("admin")?>
+                </div>
+                <div class="logged-user-role">
+                  系统管理员
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h1 class="menu-page-header">
+            Page Header
+          </h1>
+          <ul class="main-menu">
+            <li class="sub-header">
+              <span>系统操作</span>
+            </li>
+			<!--has-sub-menu 下标箭头-->
+			<li class="selected">
+              <a href="/">
+                <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                 <span>网站首页</span></a>
+            </li>
+            <li class="selected">
+              <a href="/admin">
+                <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>聊天室管理</span></a>
+             <!-- <div class="sub-menu-w">
+                <div class="sub-menu-header">
+                  聊天室操作
+                </div>
+                <div class="sub-menu-icon">
+                  <i class="os-icon os-icon-layout"></i>
+                </div>
+                <div class="sub-menu-i">
+                  <ul class="sub-menu">
+                    <li>
+                      <a href="index.html">聊天室列表</a>
+                    </li>
+					
+                  </ul>
+                </div>
+              </div>-->
+            </li>
+			 <li class="selected">
+              <a href="/admin/index/usercenter">
+                <div class="icon-w">
+                 <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>用户管理</span></a>
+            </li>
+			
+           <!--  <li class="selected">
+              <a href="/admin/index/compactcard">
+                <div class="icon-w">
+                 <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>生成群卡</span></a>
+            </li>-->
+			<li class="selected ">
+              <a href="/admin/index/groupchat">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>聊天记录</span></a>
+            </li>
+
+		<!--<li class="selected ">
+              <a href="/admin/index/chatold">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>管理私聊记录</span></a>
+            </li>-->
+
+			
+			<li class="selected ">
+              <a href="/admin/index/fdchat">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>好友聊天记录</span></a>
+            </li>
+
+			<li class="selected ">
+              <a href="/admin/index/settings">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>系统设置</span></a>
+            </li>
+
+			<li class="selected ">
+              <a href="/admin/index/logout">
+			    <div class="icon-w">
+                  <div class="os-icon os-icon-layout"></div>
+                </div>
+                <span>退出登陆</span></a>
+            </li>
+			
+          </ul>
+         
+        </div>

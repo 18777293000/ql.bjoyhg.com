@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8" />
+	<title>群组信息</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<link rel="stylesheet" href="/static/css/reset.css" />
+	<link rel="stylesheet" href="/static/css/animate.css" />
+	<link rel="stylesheet" href="/static/css/swiper-3.4.1.min.css" />
+	<link rel="stylesheet" href="/static/css/layout.css" />
+	
+	<script src="/static/js/jquery-1.9.1.min.js"></script>
+	<script src="/static/js/zepto.min.js"></script>
+	<script src="/static/js/fontSize.js"></script>
+	<script src="/static/js/swiper-3.4.1.min.js"></script>
+	<script src="/static/js/wcPop/wcPop.js"></script>
+	
+</head>
+<body>
+	
+	<!-- <>微聊主容器 -->
+	<div class="wechat__panel clearfix">
+		<div class="wc__home-wrapper flexbox flex__direction-column">
+			<!-- //顶部 -->
+			<div class="wc__headerBar fixed">
+				<div class="inner flexbox">
+					<a class="back" href="javascript:;" onclick="history.back(-1);"></a>
+					<h2 class="barTit flex1">群组信息</h2>
+				</div>
+			</div>
+
+			<!-- //群信息页 -->
+			<div class="wc__ucinfoPanel">
+				<div class="wc__ucinfo-qunMember">
+					<ul class="clearfix">
+					<!--群组成员-->
+					{volist name="list" id="vo"}
+					{eq name="qz" value="1"}
+					<li><a href="/index/index/fdinfo.html?id={$vo.userid}"><img class="uimg" src="{$vo.userid|tx}" /><span class="name">{$vo.userid|username}</span></a></li>
+					{else/}
+					<li><img class="uimg" src="{$vo.userid|tx}" /><span class="name">{$vo.userid|username}</span></li>
+					{/eq}
+					{/volist}
+					<!--
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img01.jpg" /><span class="name">Aster</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img02.jpg" /><span class="name">马蓉 ▪ ☀☼㈱</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img03.jpg" /><span class="name">科比</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img10.jpg" /><span class="name">Bear</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img15.jpg" /><span class="name">CC_李嘉诚</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img04.jpg" /><span class="name">张小龙</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img06.jpg" /><span class="name">李彦宏-Robin</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img07.jpg" /><span class="name">刘强东</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img08.jpg" /><span class="name">Lm杨幂幂</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img11.jpg" /><span class="name">Wqq_王巧巧</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img13.jpg" /><span class="name">wuli凡凡</span></a></li>
+						<li><a href="/index/index/fdinfo.html"><img class="uimg" src="/static/img/uimg/u__chat-img14.jpg" /><span class="name">Nice奶思</span></a></li>-->
+					</ul>
+				</div>
+				<div class="wc__ucinfo-personal">
+					<ul class="clearfix">
+						<li>
+							<div class="item flexbox flex-alignc wc__material-cell">
+								<label class="lbl flex1">群聊名称</label>
+								<input class="val" type="text" value="{$groupinfo.title}" readonly="true" />
+							</div>
+							<div class="item flexbox flex-alignc wc__material-cell">
+								<label class="lbl flex1">群主</label>
+								<input class="val" type="text" value="{$groupinfo.userid|username}" />
+							</div>
+						</li>
+						<li>
+							<div class="item flexbox flex-alignc">
+								<label class="lbl flex1">开启禁言</label>
+								<div class="cnt"><input class="cp__checkbox-switch" type="checkbox" onclick="groupzt()" {eq name="groupinfo.zt" value="1"}checked{/eq}/></div>
+							</div>
+							<!--<div class="item flexbox flex-alignc">
+								<label class="lbl flex1">显示群成员昵称</label>
+								<div class="cnt"><input class="cp__checkbox-switch" type="checkbox" checked /></div>
+							</div>-->
+						</li>
+						<!--<li>
+							<div class="item flexbox flex-alignc wc__material-cell">
+								<label class="lbl flex1">设置当前聊天背景</label>
+							</div>
+						</li>-->
+						<li>
+							<div class="item flexbox flex-alignc wc__material-cell" id="groupqk">
+								<label class="lbl flex1"><a href="javascript:;" >清空聊天记录</a></label>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="wc__btns-panel mt-30">
+					<a class="wc__btn-primary" href="javascript:;" style="background: #e64240;" id="J__leaveOutQun">删除群组</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		/** __公共函数 */
+		$(function(){
+			//清空群聊天记录
+			$("#groupqk").on("click", function(){
+				var logout = wcPop({
+					skin: 'android',
+					content: '只有群主才可清空本群消息,确定清空？',
+
+					btns: [
+						{
+							text: '取消',
+							onTap() {
+								wcPop.close();
+							}
+						},
+						{
+							text: '确定',
+							style: 'color:#e64240',
+							onTap() {
+							wcPop.close();
+						$.post("/index.php/message/index/groupqk",
+			{
+		 userid:{$groupinfo.id},//用户ID
+		 },
+    function(data,status){
+		if(data==1){
+		Toast("已清空",2000)
+		}else{
+			Toast("没有权限",2000)
+		}
+		//消息回调
+    });
+								//window.location.href = "index.html";
+								
+							}
+						}
+					]
+				});
+			});
+			// ...
+		});
+		
+		/** __自定函数 */
+		$(function(){
+			// 退出群
+			$("#J__leaveOutQun").on("click", function(){
+				var logout = wcPop({
+					skin: 'android',
+					content: '只有群主才操作,确定删除？',
+
+					btns: [
+						{
+							text: '取消',
+							onTap() {
+								wcPop.close();
+							}
+						},
+						{
+							text: '确定',
+							style: 'color:#e64240',
+							onTap() {
+							//	window.location.href = "index.html";
+								wcPop.close();
+								$.post("/index.php/message/index/groupdel",
+			{
+		 userid:{$groupinfo.id},//用户ID
+		 },
+    function(data,status){
+		if(data==1){
+		Toast("已删除",2000)
+		window.location.href = "/";
+		}else{
+			Toast("没有权限",2000)
+		}
+		//消息回调
+    });
+							}
+						}
+					]
+				});
+			});
+			
+		});
+//关闭聊天是发言
+function groupzt(){  
+	 $.post("/index.php/message/index/groupzt",
+    {
+      groupid:{$groupinfo.id},
+	},
+	   function(data,status){
+		   if(data==2){
+		    Tmsg('没有权限',2);
+		   }else if(data==1){
+			   Tmsg('更改聊天室状态,不允许发言',3);
+		   }else{
+			   Tmsg('更改聊天室状态,允许发言',3);
+		   }
+	   });
+ 
+  return;
+}
+	function Tmsg(msg,time){
+	 wcPop({
+      anim: 'fadeIn',
+      content: msg,
+      shade: true,
+      shadeClose: false,
+      time: time
+    });
+
+		
+}
+function Toast(msg,duration){  
+    duration=isNaN(duration)?3000:duration;  
+    var m = document.createElement('div');  
+    m.innerHTML = msg;  
+    m.style.cssText="width: 60%;min-width: 150px;opacity: 0.7;height: 30px;color: rgb(255, 255, 255);line-height: 30px;text-align: center;border-radius: 5px;position: fixed;top: 40%;left: 20%;z-index: 999999;background: rgb(0, 0, 0);font-size: 12px;";  
+    document.body.appendChild(m);  
+    setTimeout(function() {  
+        var d = 0.5;  
+        m.style.webkitTransition = '-webkit-transform ' + d + 's ease-in, opacity ' + d + 's ease-in';  
+        m.style.opacity = '0';  
+        setTimeout(function() { document.body.removeChild(m) }, d * 1000);  
+    }, duration);  
+}
+	</script>
+	<!--网站WEB 小程序 android APP定制开发qq:839070295-->
+</body>
+</html>

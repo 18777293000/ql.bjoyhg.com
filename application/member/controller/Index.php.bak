@@ -1,0 +1,202 @@
+<?php
+namespace app\member\controller;
+
+use think\Db;
+use think\Cookie;
+use think\Controller;
+
+class Index extends Controller
+{
+    public function index()
+    {
+        return $this->fetch();
+    }
+
+	//私聊
+	 public function chat()
+    {
+        return $this->fetch();
+    }
+	//创建新群
+	public function addgroup(){
+		if(input('post.groupname')){
+			$data['userid']=userid(cookie('name'));
+			$data['title']=input('post.groupname');
+			$data['content']=input('post.groupinfo');
+			$data['img']=input('post.grouptx');
+			$data['fid']='1';
+			//设置群状态
+			$szinfo=Db::name('settings')->where('id','1')->find();
+			$data['rank']=$szinfo['data'];
+			$data['time']=time();
+			$newsid=Db::name('group')->insertGetId($data);
+			if($szinfo['data']==0){
+			$this->success('群建立成功等待审核通过后可显示', '/');
+			}else{
+				$this->success('新增成功', '/');
+			}
+			exit;
+		}
+		return $this->fetch();
+	}
+	//群列表
+	public function listgroup(){
+		$list=Db::name('groupuser')
+			->where('userid',userid(cookie('name')))
+			->select();
+		$this->assign('list', $list);
+		return $this->fetch();
+	}
+	
+	
+	//好友
+	public function addfd(){
+		$list='';
+		if(input('post.name'))
+			{
+		$list=Db::name('user')
+			->where('name','like','%'.input('post.name').'%')
+			->select();
+		}
+		$this->assign('list', $list);
+		return $this->fetch();
+	}
+
+	//添加好友
+	public function addhy(){
+		if(input('get.id'))
+		{
+			$info=Db::name('user')
+			->where('id',input('get.id'))
+			->find();
+		}
+		if(!$info)  $this->error('用户不存在');
+		//好友添加
+		$data['userid']=userid(cookie('name'));//用户名转化为ID
+		$data['fdid']=$info['id'];
+		$fdinfo=Db::name('frineds')->where($data)->find();
+		if($fdinfo){
+			//是否已被添加为好友
+			if($fdinfo['rank']==0){
+				//更改状态完成好友添加
+			}else{
+			$this->error('已经是好友');
+			exit;
+			}
+		}else{
+			//新好友
+			$data['fdname']=username($info['id']);
+			$data['firstletter']=_getFirstCharter(username($info['id']));
+			$data['rank']=1;
+			Db::name('frineds')->insert($data);
+		}
+		//发送好友请求
+		$dataqq['userid']=$info['id'];//用户名转化为ID
+		$dataqq['fdid']=userid(cookie('name'));
+		if(!Db::name('frineds')->where($dataqq)->find()){
+			$dataqq['time']=time();
+			Db::name('frinedslog')->insert($dataqq);
+		}
+
+		$this->success('加好友成功', '/');
+	}
+	
+	//新朋友请求
+	public function newsfd()
+	{
+		$list=Db::name('frinedslog')
+			->where('userid',userid(cookie('name')))
+			->select();
+		$this->assign('list', $list);
+		return $this->fetch();
+	}
+
+	//审核新朋友
+	public function fdsh(){
+		//审核通过加为好友
+		if(input('post.id'))
+		{
+			$info=Db::name('frinedslog')
+			->where('id',input('post.id'))
+			->find();
+		}
+		if(!$info)  echo '2';
+		//好友添加
+		$data['userid']=$info['userid'];//用户名转化为ID
+		$data['fdid']=$info['fdid'];
+		if(Db::name('frineds')->where($data)->find()){
+			echo '0';
+		}else{
+			$data['fdname']=username($info['fdid']);
+			$data['firstletter']=_getFirstCharter(username($info['fdid']));
+			$data['zt']='1';
+			Db::name('frineds')->insert($data);
+			echo '1';
+		}
+		//删除请求记录
+		Db::name('frinedslog')->where('id',$info['id'])->delete();
+		echo '4';
+
+	}
+
+	//删除群组用户聊天记录
+	public function groupuserxx(){
+		$data['id']=input('post.fid');
+		$data['userid']=userid(cookie('name'));
+		$info=Db::name('group')->where($data)->find();
+			if($info){
+				//权限审核通过
+				$datainfo['fid']=input('post.fid');
+				$datainfo['userid']=input('post.id');;
+				Db::name('groupchat')->where($datainfo)->delete();
+				echo '1';
+			}else{
+				//没有权限
+				echo '0';
+			}
+		
+	}
+
+	//将用户踢出群组
+	public function grouplogout(){
+		$data['id']=input('post.fid');
+		$data['userid']=userid(cookie('name'));
+		$info=Db::name('group')->where($data)->find();
+			if($info){
+				//权限审核通过
+				$datainfo['groupid']=input('post.fid');
+				$datainfo['userid']=input('post.id');;
+				$updata['zt']='1';
+				Db::name('groupuser')->where($datainfo)->update($updata);
+				echo '1';
+			}else{
+				//没有权限
+				echo '0';
+			}
+	}
+
+	//二维码图片
+	public function qrcodeimg(){
+		vendor('phpqrcode');
+		//预设的第一条回复消息
+		//input('post.settingreply');
+		$value = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']."123456"; //二维码内容 
+		$errorCorrectionLevel = 'L';//容错级别 
+		//ROOT_PATH.
+		$outfile="qrcode/".time().random(12).'.png';//图片保存地址
+		$matrixPointSize = 6.3;//生成图片大小 
+		$object = new \QRcode();
+		//生成二维码图片 
+		$object::png($value, $outfile, $errorCorrectionLevel, $matrixPointSize, 2);
+		$data[] = array(
+			'url' => $outfile,
+			'info' => "编号：".random(12).input('post.settingreply')
+			);
+			/**
+		$data[]['url'] = $outfile;
+		       ['info'] = "编号：".random(12);
+			   **/
+		echo json_encode($data);
+		//echo $outfile;
+	}
+}
